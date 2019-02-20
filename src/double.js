@@ -2,7 +2,9 @@ const noteBook = {
   getNotes(){},
   editNote(){},
   deleteNote(){},
-  createNote(){}
+  create(){
+    console.log("you made a note")
+  }
 }
 
 const note = {

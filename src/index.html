@@ -8,16 +8,30 @@
   <title>My Lovely Notebook</title>
 </head>
 <body>
-
 <div class="container">
-  <div class="create">
+  <div class="container__form_container">
+    <form class="create_form">
+      <input type="text" name="note_title" value="" placeholder="Title" required/>
+      <textarea type="text" name="note_body" value="" placeholder="body"></textarea>
+      <input type="submit" name="create_note" value="post!">
+    </form>
   </div>
   <div class="display">
   </div>
   <div class="edit">
   </div>
 </div>
+<script type="text/javascript" src="double.js"></script>
+<script type="text/javascript">
+  const form = document.querySelector('.create_form');
+  form.addEventListener("submit", (event)=>{
+    event.preventDefault();
+    const title = form.querySelector("[name=note_title]").value
+    const body = form.querySelector("[name=note_body]").value
+    const noteObject = noteBook.create(title,body)
+  });
 
+</script>
 
 </body>
 </html>
