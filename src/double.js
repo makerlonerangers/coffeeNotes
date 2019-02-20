@@ -1,5 +1,7 @@
 const noteBook = {
-  getNotes(){},
+  all(){
+    return [note,note]
+  },
   editNote(){},
   deleteNote(){},
   create(){

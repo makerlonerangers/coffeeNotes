@@ -17,6 +17,7 @@
     </form>
   </div>
   <div class="display">
+    <ul class="display_notes"></ul>
   </div>
   <div class="edit">
   </div>
@@ -24,6 +25,19 @@
 <script type="text/javascript" src="double.js"></script>
 <script type="text/javascript">
   const form = document.querySelector('.create_form');
+  const displayNotes = document.querySelector('.display_notes')
+
+  displayNotes(){
+    const notes = noteBook.all();
+    displayNotes.innerHTML = notes.map((note,index) => {
+      return `
+      <li class="single_note" id="note-${index}"></li>
+      `
+    })
+
+  }
+
+
   form.addEventListener("submit", (event)=>{
     event.preventDefault();
     const title = form.querySelector("[name=note_title]").value
