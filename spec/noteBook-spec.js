@@ -5,6 +5,6 @@ describe('Notebook', () => {
 
   it('can create a note', () => {
     NoteBook.create('title goes here', 'body goes here');
-    expect(NoteBook._notes[0].title).toEqual('title goes here');
+    expect(NoteBook._notes[0].title()).toEqual('title goes here');
   });
 });
