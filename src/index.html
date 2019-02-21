@@ -1,51 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" href="style.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>My Lovely Notebook</title>
-</head>
-<body>
-<div class="container">
-  <div class="container__form_container">
-    <form class="create_form">
-      <input type="text" name="note_title" value="" placeholder="Title" required/>
-      <textarea type="text" name="note_body" value="" placeholder="body"></textarea>
-      <input type="submit" name="create_note" value="post!">
-    </form>
-  </div>
-  <div class="display">
-    <ul class="display_notes"></ul>
-  </div>
-  <div class="edit">
-  </div>
-</div>
-<script type="text/javascript" src="double.js"></script>
-<script type="text/javascript">
-  const form = document.querySelector('.create_form');
-  const displayNotes = document.querySelector('.display_notes')
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Lovely Notebook</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__form_container">
+        <form class="create_form">
+          <input
+            type="text"
+            name="note_title"
+            value=""
+            placeholder="Title"
+            required
+          />
+          <textarea
+            type="text"
+            name="note_body"
+            value=""
+            placeholder="body"
+          ></textarea>
+          <input type="submit" name="create_note" value="post!" />
+        </form>
+      </div>
+      <div class="display">
+        <ul class="display_notes"></ul>
+      </div>
+      <div class="edit"></div>
+    </div>
+    <script type="text/javascript" src="double.js"></script>
+    <script type="text/javascript">
+      const form = document.querySelector('.create_form');
+      const notesList = document.querySelector('.display_notes');
 
-  displayNotes(){
-    const notes = noteBook.all();
-    displayNotes.innerHTML = notes.map((note,index) => {
-      return `
-      <li class="single_note" id="note-${index}"></li>
-      `
-    })
+      const displayNotes = () => {
+        const notes = noteBook.all();
+        notesList.innerHTML = notes
+          .map((note, index) => {
+            return `
+          <li class="single_note" id="note-${index}">
+            <h3>
+              ${note.title}
+            </h3>
+            <p>
+              ${note.body}
+            </p>
+            <button class="update-note">
+              Update  
+            </button>
+          </li>
+          `;
+          })
+          .join('');
+      };
 
-  }
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const title = form.querySelector('[name=note_title]').value;
+        const body = form.querySelector('[name=note_body]').value;
+        const noteObject = noteBook.create(title, body);
+        displayNotes();
+        form.reset();
+      });
 
+      displayNotes();
 
-  form.addEventListener("submit", (event)=>{
-    event.preventDefault();
-    const title = form.querySelector("[name=note_title]").value
-    const body = form.querySelector("[name=note_body]").value
-    const noteObject = noteBook.create(title,body)
-  });
-
-</script>
-
-</body>
+      notesList.addEventListener('click', e => {
+        // if(!e.target)
+        console.log(e.target);
+      });
+    </script>
+  </body>
 </html>
