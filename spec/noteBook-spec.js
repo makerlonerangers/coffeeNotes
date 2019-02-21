@@ -7,4 +7,9 @@ describe('Notebook', () => {
     NoteBook.create('title goes here', 'body goes here');
     expect(NoteBook._notes[0].title()).toEqual('title goes here');
   });
+
+  it('can return all notes', () => {
+    NoteBook.create('C', 'D');
+    expect(NoteBook.getAll()[0].title()).toEqual('title goes here');
+  });
 });
