@@ -4,12 +4,17 @@ describe('Notebook', () => {
   });
 
   it('can create a note', () => {
-    NoteBook.create('title goes here', 'body goes here');
-    expect(NoteBook._notes[0].title()).toEqual('title goes here');
+    NoteBook.create('title', 'body');
+    expect(NoteBook._notes[0].title()).toEqual('title');
   });
 
   it('can return all notes', () => {
     NoteBook.create('C', 'D');
-    expect(NoteBook.getAll()[0].title()).toEqual('title goes here');
+    expect(NoteBook.getAll()[0].title()).toEqual('title');
+  });
+
+  it('can delete a note', () => {
+    NoteBook.delete('title');
+    expect(NoteBook._notes[0].title()).toEqual('C');
   });
 });
