@@ -1,8 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
+
 body {
   background-color: white;
   color: black;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 .edit {
   visibility: hidden;
+}
+
+header h1 {
+  font-size: 4rem;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+}
+
+.single_note {
+  /* background-color: rgb(127, 102, 238); */
+  border: 3px solid black;
+  color: black;
+  padding: 10px 20px;
+  margin: 40px;
+  min-width: 500px;
+  /* border-radius: 3px; */
+}
+
+.single_note ul,
+li {
+  list-style-type: none;
+}
+
+.single_note h3 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+}
+
+.create_form {
+  background-color: #ddd;
+  box-shadow: 10px 10px;
+  border: 3px solid black;
+  padding: 50px;
+  min-width: 500px;
+}
+
+input,
+textarea,
+select,
+option {
+  /* background: none !important; */
+  border-top: #000 1px solid !important;
+  border-left: #000 1px solid !important;
+  border-bottom: #000 3px solid !important;
+  border-right: #000 3px solid !important;
+  border-radius: 2px !important;
+  color: #000;
+}
+
+form input[type='text'] {
+  width: 100%;
+  margin-bottom: 10px;
+  height: 30px;
+  background-color: white;
+}
+
+form textarea {
+  width: 100%;
+  height: 80px;
+}
+
+form input[type='submit'] {
+  background-color: black;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  padding: 5px 10px;
+}
+
+input[type='text'],
+textarea {
+  background-color: #fff !important;
+  padding: 5px;
 }
