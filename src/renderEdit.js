@@ -17,11 +17,9 @@ const renderEditPage = id => {
       <input type="submit" name="create_note" value="Update!" />
     </form>
     `;
-  document.querySelector('.container').innerHTML = html;
-  const updateForm = document.querySelector('.update_form');
-  updateForm.addEventListener('submit', updateNote);
 
   const updateNote = e => {
+    console.log('1');
     e.preventDefault();
     const newTitle = document.querySelector('[name=edit_note_title').value;
     const newBody = document.querySelector('[name=edit_note_body').value;
@@ -29,4 +27,8 @@ const renderEditPage = id => {
     renderHome();
     displayNotes();
   };
+
+  document.querySelector('.container').innerHTML = html;
+  const updateForm = document.querySelector('.update_form');
+  updateForm.addEventListener('submit', updateNote);
 };
