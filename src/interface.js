@@ -1,7 +1,7 @@
 const noteBook = new NoteBook();
 
 const renderHome = () => {
-  document.querySelector('.container').innerHTML = `<div class="container">
+  document.querySelector('.container').innerHTML = `
     <div class="container__form_container">
       <form class="create_form">
         <input
@@ -12,9 +12,7 @@ const renderHome = () => {
           required
         />
         <textarea
-          type="text"
           name="note_body"
-          value=""
           placeholder="body"
         ></textarea>
         <input type="submit" name="create_note" value="post!" />
@@ -24,33 +22,40 @@ const renderHome = () => {
       <ul class="display_notes"></ul>
     </div>
     <div class="edit"></div>
-  </div>`;
+  `;
 };
-renderHome();
 
+renderHome();
 const container = document.querySelector('.container');
 const form = document.querySelector('.create_form');
 const notesList = document.querySelector('.display_notes');
 
 const displayNotes = () => {
   const notes = NoteBook.getAll();
-  notesList.innerHTML = notes
+  console.log(notesList);
+
+  document.querySelector('.display_notes').innerHTML = notes
     .map((note, index) => {
       return `
-    <li class="single_note" id="note-${index}">
-      <h3>
-        ${note.title()}
-      </h3>
-      <p>
-        ${note.body()}
-      </p>
-      <button class="update-note">
-        Update
-      </button>
-    </li>
-    `;
+  <li class="single_note" id="note-${index}">
+    <h3>
+      ${note.title()}
+    </h3>
+    <p>
+      ${note.body()}
+    </p>
+    <button class="update-note" id='${index}'>
+      Update
+    </button>
+  </li>
+  `;
     })
     .join('');
+
+  document.querySelector('.display_notes').addEventListener('click', e => {
+    if (e.target.className !== 'update-note') return;
+    renderEditPage(e.target.id);
+  });
 };
 
 form.addEventListener('submit', event => {
@@ -64,8 +69,35 @@ form.addEventListener('submit', event => {
 
 displayNotes();
 
-notesList.addEventListener('click', e => {
-  if (e.target.className !== 'update-note') return;
+const renderEditPage = id => {
+  // const indexofNoteToBeUpdated = NoteBook.getAll[id];
+  const noteToBeEdited = NoteBook.getAll()[id];
+  const html = `
+  <form class="update_form">
+  <input
+    type="text"
+    name="edit_note_title"
+    value="${noteToBeEdited.title()}"
+    placeholder="Title"
+    required
+  />
+  <textarea
+    type="text"
+    name="edit_note_body"
+    placeholder="body"
+  >${noteToBeEdited.body()}</textarea>
+  <input type="submit" name="create_note" value="Update!" />
+</form>
+  `;
+  document.querySelector('.container').innerHTML = html;
+  const updateForm = document.querySelector('.update_form');
+  updateForm.addEventListener('submit', e => {
+    e.preventDefault();
 
-  container.innerHTML = `<h1>This is the edit view</h1>`;
-});
+    const newTitle = document.querySelector('[name=edit_note_title').value;
+    const newBody = document.querySelector('[name=edit_note_body').value;
+    NoteBook.update(NoteBook.getAll()[id].title(), newTitle, newBody);
+    renderHome();
+    displayNotes();
+  });
+};
