@@ -17,4 +17,10 @@ describe('Notebook', () => {
     NoteBook.delete('title');
     expect(NoteBook._notes[0].title()).toEqual('C');
   });
+
+  it('can update a note', () => {
+    NoteBook.update('C', 'title2', 'body2');
+    expect(NoteBook._notes[0].title()).toEqual('title2');
+    expect(NoteBook._notes[0].body()).toEqual('body2');
+  });
 });
