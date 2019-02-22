@@ -1,5 +1,3 @@
-console.log('Will');
-
 const noteBook = new NoteBook();
 
 const renderHome = () => {
@@ -41,10 +39,10 @@ const displayNotes = () => {
       return `
     <li class="single_note" id="note-${index}">
       <h3>
-        ${note._title}
+        ${note.title()}
       </h3>
       <p>
-        ${note._body}
+        ${note.body()}
       </p>
       <button class="update-note">
         Update
