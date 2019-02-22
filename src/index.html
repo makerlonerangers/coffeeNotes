@@ -10,8 +10,10 @@
   <body>
     <div class="container"></div>
     <script type="text/javascript">
-    const renderHome = () => {
-    document.querySelector(".container").innerHTML = `<div class="container">
+      const renderHome = () => {
+        document.querySelector(
+          '.container'
+        ).innerHTML = `<div class="container">
           <div class="container__form_container">
             <form class="create_form">
               <input
@@ -34,12 +36,13 @@
             <ul class="display_notes"></ul>
           </div>
           <div class="edit"></div>
-        </div>`
-      }
-    renderHome();
+        </div>`;
+      };
+      renderHome();
     </script>
     <script type="text/javascript" src="double.js"></script>
     <script type="text/javascript">
+      const container = document.querySelector('.container');
       const form = document.querySelector('.create_form');
       const notesList = document.querySelector('.display_notes');
 
@@ -76,8 +79,9 @@
       displayNotes();
 
       notesList.addEventListener('click', e => {
-        // if(!e.target)
-        console.log(e.target);
+        if (e.target.className !== 'update-note') return;
+
+        container.innerHTML = `<h1>This is the edit view</h1>`;
       });
     </script>
   </body>
