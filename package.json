@@ -1,0 +1,12 @@
+{
+  "name": "coffeeNotes",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/makerlonerangers/coffeeNotes.git",
+  "author": "William Dunk <williamdunk@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^5.14.1"
+  }
+}
